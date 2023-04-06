@@ -57,12 +57,7 @@ async function readJsonFile() {
   }
 }
 
-async function app() {
-  const users = await readCSV();
-
-  await saveToFile(users, "output.txt");
-
-  await readJsonFile();
-}
-
-app();
+readCSV()
+  .then((users) => saveToFile(users, "output.txt"))
+  .then(() => readJsonFile())
+  .catch((err) => console.error(err));
